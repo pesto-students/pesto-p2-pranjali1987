@@ -1,0 +1,4 @@
+Call and apply method is almost same they both invoke the function and allow you to pass the arguments,only difference between them is 
+apply pass in arguments as an array and call pass in arguments as a list.
+Apply is used when number of arguments is known during runtime and call is used when number of arguments is known during compile time. 
+
