@@ -1,9 +1,10 @@
-const reducer = (state = 0, action) => {
+const initialstate=({isLightON:true});
+const lightReducer = (state = initialstate, action) => {
   switch (action.type) {
     case "TOGGLE":
-      return !state;
+      return { isLightON:!action.isLightON };
     default:
       return state;
   }
 };
-export default reducer;
+export default lightReducer;
