@@ -1,42 +1,18 @@
-import React from "react";
-import { connect, Provider } from "react-redux";
-import {createStore} from "redux";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import reducer from "./switchToggle";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import { Provider } from 'react-redux';
+import { configureStore } from "@reduxjs/toolkit";
+import lightReducer from './switchToggle';
 
-const store = createStore(reducer);
+let store = configureStore({reducer: lightReducer});
 
-class Room extends React.Component {
-  flipLight = () => {
-    return this.props.dispatch({
-      type: "TOGGLE",
-    });
-  };
-
-  render() {
-    const lightedness = this.props.lightedness ? "lit" : "dark";
-    return (
-      <div className={`room ${lightedness}`}>
-        the room is {lightedness}
-        <br />
-        <button onClick={this.flipLight}>flip</button>
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    lightedness: state,
-  };
-};
-const RoomButton = connect(mapStateToProps)(Room);
-const container = document.getElementById("root");
-const root = createRoot(container);
-
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <RoomButton />
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
   </Provider>
 );
